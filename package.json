@@ -1,0 +1,41 @@
+{
+  "name": "web-summarizer",
+  "version": "1.0.0",
+  "description": "Google Chrome extension to summrize web pages",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --colors -p",
+    "lint": "eslint ./src --ext .js",
+    "test": "jest"
+  },
+  "author": {
+    "name": "Erick Alves",
+    "email": "e7alves@gmail.com"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "string": "3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "7.10.4",
+    "@babel/plugin-transform-runtime": "7.10.5",
+    "@babel/preset-env": "7.10.4",
+    "@babel/runtime": "7.10.5",
+    "babel-core": "6.26.3",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "24.8.0",
+    "babel-loader": "8.1.0",
+    "copy-webpack-plugin": "6.0.3",
+    "eslint": "7.4.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "file-loader": "6.0.0",
+    "jest": "26.2.2",
+    "webpack": "4.43.0",
+    "webpack-cli": "3.3.12"
+  }
+}
