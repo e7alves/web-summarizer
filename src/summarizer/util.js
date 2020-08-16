@@ -6,12 +6,14 @@ export const binarySearch = (value, array) => {
   while (start <= end) {
     mid = Math.floor((start + end) / 2)
     if (array[mid] === value) {
-      return true
+      return mid
     } else if (array[mid] < value) {
       start = mid + 1
     } else {
       end = mid - 1
     }
   }
-  return false
+  return -1
 }
+
+export const sort = (array, rule = (a, b) => a < b ? -1 : 1) => array.sort((a, b) => rule(a, b))
