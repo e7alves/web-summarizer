@@ -2,7 +2,7 @@ import { getSentences, transformSentences } from '../src/summarizer/preProcessor
 import { binarySearch } from '../src/summarizer/util'
 
 test('Returns empty senteces array if paragrafs is empty too', () => {
-  expect([]).toEqual(getSentences([]))
+  expect(getSentences([])).toEqual([])
 })
 
 test('Returns correct sentences to paragraphs with \'.\'', () => {
@@ -10,20 +10,20 @@ test('Returns correct sentences to paragraphs with \'.\'', () => {
     'Thanks so much for the birthday money. Thanks so much for driving me home.',
     'I really appreciate your help.',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'Thanks so much for the birthday money.',
     'Thanks so much for driving me home.',
     'I really appreciate your help.',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 test('Returns correct sentence to single paragraph', () => {
   const paragraphs = [
     'Thanks so much for the birthday money. ',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'Thanks so much for the birthday money.',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 test('Returns correct sentences to paragraphs with \'?\'', () => {
@@ -31,11 +31,11 @@ test('Returns correct sentences to paragraphs with \'?\'', () => {
     'How does that sound ?',
     'Excuse me, do you know what time it is?What do you think? ',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'How does that sound ?',
     'Excuse me, do you know what time it is?',
     'What do you think?',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 test('Returns correct sentences to paragraphs with \'!\'', () => {
@@ -43,12 +43,12 @@ test('Returns correct sentences to paragraphs with \'!\'', () => {
     'Amen, hallelujah, amen!',
     'Awesome !Bingo! Right on target! ',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'Amen, hallelujah, amen!',
     'Awesome !',
     'Bingo!',
     'Right on target!',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 test('Returns correct sentences to paragraphs with \'…\'', () => {
@@ -56,11 +56,11 @@ test('Returns correct sentences to paragraphs with \'…\'', () => {
     ' I really appreciate… Please call me (back) at…',
     'Actually, I thought… ',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'I really appreciate…',
     'Please call me (back) at…',
     'Actually, I thought…',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 test('Returns correct sentences to paragraphs with \'...\'', () => {
@@ -68,11 +68,11 @@ test('Returns correct sentences to paragraphs with \'...\'', () => {
     ' I really appreciate... Please call me (back) at...',
     'Actually, I thought... ',
   ]
-  expect([
+  expect(getSentences(paragraphs)).toEqual([
     'I really appreciate…',
     'Please call me (back) at…',
     'Actually, I thought…',
-  ]).toEqual(getSentences(paragraphs))
+  ])
 })
 
 jest.mock('../src/summarizer/stemmer', () => {
@@ -94,9 +94,9 @@ test('Returns sentences preprocessed', () => {
     'Please call me (back) at…',
     'Actually, I thought…',
   ]
-  expect([
+  expect(transformSentences(sentences)).toEqual([
     ['realli', 'appreci'],
     ['pleas', 'call', 'back'],
     ['actual', 'thought'],
-  ]).toEqual(transformSentences(sentences))
+  ])
 })
