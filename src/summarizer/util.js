@@ -17,3 +17,11 @@ export const binarySearch = (value, array) => {
 }
 
 export const sort = (array, rule = (a, b) => a < b ? -1 : 1) => array.sort((a, b) => rule(a, b))
+
+export const cossineSimilarity = (a, b) => {
+  const setA = new Set(a)
+  const setB = new Set(b)
+  let intersectionCount = 0
+  setA.forEach(value => setB.has(value) && intersectionCount++)
+  return intersectionCount / (Math.sqrt(setA.size) * Math.sqrt(setB.size))
+}
