@@ -25,3 +25,16 @@ export const cossineSimilarity = (a, b) => {
   setA.forEach(value => setB.has(value) && intersectionCount++)
   return intersectionCount / (Math.sqrt(setA.size) * Math.sqrt(setB.size))
 }
+
+export const normalize = (array) => {
+  array.forEach(value => {
+    if (value < 0) {
+      throw new Error('Values cannot be negative')
+    }
+  })
+  const greater = array.length && array.reduce((a, b) => Math.max(a, b))
+  if (greater === 0) {
+    return Array(array.length).fill(1)
+  }
+  return array.map(value => value / greater)
+}

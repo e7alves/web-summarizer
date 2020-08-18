@@ -1,4 +1,4 @@
-import { binarySearch, sort, cossineSimilarity } from '../src/summarizer/util'
+import { binarySearch, sort, cossineSimilarity, normalize } from '../src/summarizer/util'
 
 test('Binary search returns false to empty array', () => {
   expect(binarySearch('a', [])).toEqual(-1)
@@ -52,3 +52,40 @@ test('Returns correct similarity rate to vectors equals', () => {
   expect(cossineSimilarity(s1, s2)).toBeCloseTo(1, 3)
 })
 
+test('Returns correct normalization', () => {
+  const array1 = []
+  const array2 = [1.6454, 2.788, 1.2544]
+  const expected2 = [0.5901, 1, 0.4499]
+  const array3 = [0.233, 0, 0.21, 0.188]
+  const expected3 = [1, 0, 0.9012, 0.8068]
+  const array4 = [2, 3, 5, 19]
+  const expected4 = [0.1052, 0.1578, 0.2631, 1]
+  const array5 = [0.5]
+  const expected5 = [1]
+  expect(normalize(array1)).toEqual([])
+  normalize(array2).forEach(
+    (value, i) => expect(value).toBeCloseTo(expected2[i], 3)
+  )
+  normalize(array3).forEach(
+    (value, i) => expect(value).toBeCloseTo(expected3[i], 3)
+  )
+  normalize(array4).forEach(
+    (value, i) => expect(value).toBeCloseTo(expected4[i], 3)
+  )
+  normalize(array5).forEach(
+    (value, i) => expect(value).toBeCloseTo(expected5[i], 3)
+  )
+})
+
+test('Returns correct normalization to array of zeros', () => {
+  const array = [0, 0, 0]
+  const expected = [1, 1, 1]
+  normalize(array).forEach(
+    (value, i) => expect(value).toBeCloseTo(expected[i], 3)
+  )
+})
+
+test('Returns error on normalization when array has negative numbers', () => {
+  const array = [-1, 0, 1]
+  expect(() => normalize(array)).toThrow(Error)
+})
