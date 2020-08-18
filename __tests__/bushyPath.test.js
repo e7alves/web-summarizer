@@ -74,7 +74,7 @@ test('Returns correct final ranking', () => {
     expect(rank[i].weight).toBeCloseTo(value.weight, 3)
   })
   // immutable array test
-  rank = []
+  rank[0] = null
   const immutableRank = bushyPath.getRank()
   expected.forEach((value, i) => {
     expect(immutableRank[i].index).toEqual(value.index)

@@ -2,9 +2,13 @@ import { sort, binarySearch } from './util'
 
 export default class WordsMapping {
   constructor (sentences = []) {
-    const wordsMap = this.generateMap(sentences)
+    this._sentences = sentences
+  }
+
+  execute () {
+    const wordsMap = this.generateMap(this._sentences)
     sort(wordsMap)
-    this._mappedSentences = this.generateMappedSentences(sentences, wordsMap)
+    this._mappedSentences = this.generateMappedSentences(this._sentences, wordsMap)
   }
 
   generateMap (sentences) {
@@ -22,6 +26,6 @@ export default class WordsMapping {
   }
 
   getMappedSentences () {
-    return this._mappedSentences
+    return [...this._mappedSentences]
   }
 }

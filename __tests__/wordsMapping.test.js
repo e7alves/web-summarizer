@@ -30,9 +30,20 @@ test('Returns correct sentences map', () => {
     ['excuse', 'me', 'do', 'you', 'know', 'what', 'time', 'it', 'is'],
   ]
   const wordsMapping = new WordsMapping(sentences)
+  wordsMapping.execute()
+  const map = wordsMapping.getMappedSentences()
   const expected = [
     [0, 8, 4, 7, 3, 2],
     [1, 5, 0, 8, 4, 7, 6, 3, 2],
   ]
+  expect(map).toEqual(expected)
+  // immutable map test
+  map[0] = null
   expect(wordsMapping.getMappedSentences()).toEqual(expected)
+})
+
+test('Returns correct map to empty sentences', () => {
+  const wordsMapping = new WordsMapping()
+  wordsMapping.execute()
+  expect(wordsMapping.getMappedSentences()).toEqual([])
 })
