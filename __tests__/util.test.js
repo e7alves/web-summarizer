@@ -1,4 +1,10 @@
-import { binarySearch, sort, cossineSimilarity, normalize } from '../src/summarizer/util'
+import {
+  binarySearch,
+  sort,
+  cossineSimilarity,
+  normalize,
+  wordsCounter,
+} from '../src/summarizer/util'
 
 test('Binary search returns false to empty array', () => {
   expect(binarySearch('a', [])).toEqual(-1)
@@ -88,4 +94,17 @@ test('Returns correct normalization to array of zeros', () => {
 test('Returns error on normalization when array has negative numbers', () => {
   const array = [-1, 0, 1]
   expect(() => normalize(array)).toThrow(Error)
+})
+
+test('Returns correct number of words to empty sentences', () => {
+  expect(wordsCounter([])).toEqual([])
+})
+
+test('Returns correct number of words in the sentences', () => {
+  const sentences = [
+    'Thanks  so  much for the birthday money.',
+    'Thanks so much  for driving me home.',
+    'I really appreciate your help.',
+  ]
+  expect(wordsCounter(sentences)).toEqual([7, 7, 5])
 })

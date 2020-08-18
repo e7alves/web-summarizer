@@ -38,3 +38,11 @@ export const normalize = (array) => {
   }
   return array.map(value => value / greater)
 }
+
+export const wordsCounter = (sentences) => {
+  const result = []
+  sentences.forEach(sentence => {
+    result.push(sentence.split(/\s+/g).length)
+  })
+  return result
+}
