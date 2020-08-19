@@ -86,7 +86,7 @@ jest.mock('../src/summarizer/stemmer', () => {
 })
 
 jest.mock('../src/summarizer/util')
-binarySearch.mockImplementation((word) => ['i', 'me', 'at'].includes(word))
+binarySearch.mockImplementation((word) => ['i', 'me', 'at'].includes(word) ? ['i', 'me', 'at'].indexOf(word) : -1)
 
 test('Returns sentences preprocessed', () => {
   const sentences = [

@@ -17,7 +17,7 @@ export const transform = (sentences) => {
     sentence.replace(/[^a-zA-Z\s]/g, '')
       .split(/\s+/g)
       .map(word => word.toLowerCase())
-      .filter(word => !binarySearch(word, stopList))
+      .filter(word => binarySearch(word, stopList) === -1)
       .map(word => stemmer.getCanonical(word))
   )
 }
