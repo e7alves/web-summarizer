@@ -1,4 +1,4 @@
-import { getSentences, transformSentences } from '../src/summarizer/preProcessor'
+import { getSentences, transform } from '../src/summarizer/preProcessor'
 import { binarySearch } from '../src/summarizer/util'
 
 test('Returns empty senteces array if paragrafs is empty too', () => {
@@ -94,7 +94,7 @@ test('Returns sentences preprocessed', () => {
     'Please call me (back) at…',
     'Actually, I thought…',
   ]
-  expect(transformSentences(sentences)).toEqual([
+  expect(transform(sentences)).toEqual([
     ['realli', 'appreci'],
     ['pleas', 'call', 'back'],
     ['actual', 'thought'],

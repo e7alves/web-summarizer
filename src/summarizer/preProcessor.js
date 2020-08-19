@@ -10,7 +10,7 @@ export const getSentences = (paragraphs) => {
   return sentences
 }
 
-export const transformSentences = (sentences) => {
+export const transform = (sentences) => {
   const stopList = stopWords('en')
   const stemmer = new Stemmer('en')
   return sentences.map(sentence =>
