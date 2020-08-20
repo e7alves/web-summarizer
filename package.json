@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Google Chrome extension to summrize web pages",
   "scripts": {
-    "build": "NODE_ENV=production webpack --colors -p",
+    "build": "npm run test && NODE_ENV=production webpack --colors -p",
     "lint": "eslint ./src --ext .js",
     "test": "jest",
     "pre-commit": "npm run test && npm run lint"
