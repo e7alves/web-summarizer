@@ -2,6 +2,7 @@ import Snowball from 'snowball'
 
 const languages = {
   en: 'English',
+  pt: 'Portuguese',
 }
 
 export default class Stemmer {
