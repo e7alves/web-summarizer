@@ -9,10 +9,10 @@
     const descriptionMetaElem = headElem.querySelector('[name=description]')
     const bodyElem = document.querySelector('body')
     const paragraphElems = bodyElem ? bodyElem.querySelectorAll('p') : []
-    const paragraphs = []
+    const paragraphs = new Set()
     paragraphElems.forEach(elem => {
       if (elem.innerText) {
-        paragraphs.push(elem.innerText)
+        paragraphs.add(elem.innerText)
       }
     })
     const pageLang = document.querySelector('html').lang
@@ -20,7 +20,7 @@
       eventName: 'page-loaded',
       title: titleElem ? titleElem.innerText : '',
       description: descriptionMetaElem ? descriptionMetaElem.content : '',
-      paragraphs,
+      paragraphs: Array.from(paragraphs),
       lang: pageLang ? pageLang.split('-')[0].toLowerCase() : '',
     })
   }
