@@ -19,7 +19,7 @@ export default class Sumarizer {
     console.log(this._keyWords)
     const transformedSentences = transform(this._paragraphs, this._lang)
     console.log('tansformed sentences', transformedSentences)
-    const transformedKeyWords = transform([this._keyWords], this._lang)[0]
+    const transformedKeyWords = this._keyWords ? transform([this._keyWords], this._lang)[0] : []
     console.log('transformed kw', transformedKeyWords)
     const wordsMapping = new WordsMapping(transformedSentences, transformedKeyWords)
     wordsMapping.execute()

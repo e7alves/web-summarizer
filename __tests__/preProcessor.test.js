@@ -126,3 +126,8 @@ test('Returns sentences preprocessed treating spaces on border', () => {
     ['actual', 'thought'],
   ])
 })
+
+test('Returns sentences preprocessed to empty sentences', () => {
+  const sentences = []
+  expect(transform(sentences, 'en')).toEqual([])
+})

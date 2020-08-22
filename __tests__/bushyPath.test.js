@@ -62,7 +62,7 @@ test('Returns correct weights by key words evaluation', () => {
 
 test('Returns correct final ranking', () => {
   bushyPath.execute()
-  let rank = bushyPath.getRank()
+  const rank = bushyPath.getRank()
   const expected = [
     { index: 2, weight: 1.9588 },
     { index: 0, weight: 1.6666 },
@@ -79,6 +79,22 @@ test('Returns correct final ranking', () => {
   expected.forEach((value, i) => {
     expect(immutableRank[i].index).toEqual(value.index)
     expect(immutableRank[i].weight).toBeCloseTo(value.weight, 3)
+  })
+})
+
+test('Returns correct ranking to empty key words', () => {
+  bushyPath = new BushyPath(sentences, [])
+  bushyPath.execute()
+  const rank = bushyPath.getRank()
+  const expected = [
+    { index: 0, weight: 2 },
+    { index: 2, weight: 1.9588 },
+    { index: 1, weight: 1.8644 },
+    { index: 3, weight: 1.4715 },
+  ]
+  expected.forEach((value, i) => {
+    expect(rank[i].index).toEqual(value.index)
+    expect(rank[i].weight).toBeCloseTo(value.weight, 3)
   })
 })
 

@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((request) => {
     chrome.runtime.sendMessage({
       eventName: 'web-content-extracted',
       paragraphs,
-      keyWords: `${title} ${description}`,
+      keyWords: `${title} ${description}`.trim(),
       lang,
     })
   }
