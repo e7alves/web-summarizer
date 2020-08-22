@@ -12,8 +12,9 @@ export const getSentences = (paragraphs) => {
 
 export const transform = (sentences, lang) => {
   const transformedSentences = sentences.map(sentence => sentence
+    // eslint-disable-next-line no-useless-escape
+    .replace(/[!¡'=_()@#$%^&*(),.…?¿":;{}|<>\[\]]/g, '')
     .trim()
-    .replace(/[^a-zA-Z\s]/g, '')
     .split(/\s+/g)
     .map(word => word.toLowerCase())
   )
