@@ -1,8 +1,31 @@
 <html>
 <head>
+  <meta charset="UTF-8">
+  <style>
+    p {
+      font-size: 1rem;
+    }
+    #container {
+      padding: .7rem;
+    }
+    #summary-percent-out {
+      font-weight: bold;
+    }
+    .flex-container {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
 </head>
-<body style="width: 400px">
-  <div id="content" />
+<body style="width: 600px">
+  <div id="container">
+    <div class="flex-container" style="margin-right: 1rem;">
+      <output id="summary-percent-out"></output>
+      <input id="summary-percent" type="range" min="10" max="80" value="20" step="10">
+    </div>
+    <div id="content" />
+  </div>
   <script src="main.js"></script>  
 </body>
 </html>

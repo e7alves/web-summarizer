@@ -6,11 +6,12 @@ chrome.runtime.onMessage.addListener((request) => {
 
 chrome.runtime.onMessage.addListener((request) => {
   if (request.eventName === 'page-loaded') {
+    const { paragraphs, title, description, lang } = request
     chrome.runtime.sendMessage({
-      eventName: 'summary-generated',
-      title: request.title,
-      description: request.description,
-      content: request.content,
+      eventName: 'web-content-extracted',
+      paragraphs,
+      keyWords: `${title} ${description}`,
+      lang,
     })
   }
 })
