@@ -4,6 +4,7 @@ let summarizer = null
 let options = {
   summaryPercent: 0.2,
 }
+let lastSummarySenteceIndexes = null
 
 const init = () => {
   initDOM()
@@ -47,7 +48,18 @@ chrome.runtime.onMessage.addListener((request) => {
 
 const renderSummary = () => {
   const summary = summarizer.getSummary()
-  document.getElementById('content').innerHTML = summary.map(sentence => `<p>${sentence}</p>`).join('')
+  const summarySenteceIndexes = summarizer.getSummarySenteceIndexes()
+  document.getElementById('content').innerHTML = summary.map((sentence, idx) => {
+    return `
+      <p 
+        class=${lastSummarySenteceIndexes && !lastSummarySenteceIndexes.includes(summarySenteceIndexes[idx])
+        ? 'highlight' : ''}
+      >
+        ${sentence}
+      </p>
+    `
+  }).join('')
+  lastSummarySenteceIndexes = summarySenteceIndexes
 }
 
 init()

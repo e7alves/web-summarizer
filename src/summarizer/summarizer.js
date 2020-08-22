@@ -11,6 +11,7 @@ export default class Sumarizer {
     this._summaryPercent = summaryPercent
     this._rank = []
     this._rankedSentences = []
+    this._summarySenteceIndexes = []
   }
 
   execute () {
@@ -32,15 +33,25 @@ export default class Sumarizer {
     this._rank.forEach((item, idx) => {
       this._rankedSentences[idx] = this._paragraphs[item.index]
     })
+    this.generateSummary()
+  }
+
+  generateSummary () {
     const numberOfSentencesToSummary = calculateNumberOfSentencesToSummary(this._rankedSentences, this._summaryPercent)
-    this._summary = this._rank.slice(0, numberOfSentencesToSummary)
+    this._summarySenteceIndexes = this._rank.slice(0, numberOfSentencesToSummary)
       .sort((a, b) => a.index < b.index ? -1 : 1)
-      .map(item => this._paragraphs[item.index])
+      .map(item => item.index)
+    this._summary = this._summarySenteceIndexes
+      .map(idx => this._paragraphs[idx])
     console.log(this._summary)
   }
 
   getSummary () {
     return this._summary
+  }
+
+  getSummarySenteceIndexes () {
+    return [...this._summarySenteceIndexes]
   }
 
   setLang (lang) {
@@ -49,9 +60,6 @@ export default class Sumarizer {
 
   setSummaryPercent (percent) {
     this._summaryPercent = percent
-    const numberOfSentencesToSummary = calculateNumberOfSentencesToSummary(this._rankedSentences, this._summaryPercent)
-    this._summary = this._rank.slice(0, numberOfSentencesToSummary)
-      .sort((a, b) => a.index < b.index ? -1 : 1)
-      .map(item => this._paragraphs[item.index])
+    this.generateSummary()
   }
 }
