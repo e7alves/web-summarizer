@@ -12,6 +12,7 @@ export const getSentences = (paragraphs) => {
 
 export const transform = (sentences, lang) => {
   const transformedSentences = sentences.map(sentence => sentence
+    .trim()
     .replace(/[^a-zA-Z\s]/g, '')
     .split(/\s+/g)
     .map(word => word.toLowerCase())

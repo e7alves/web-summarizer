@@ -113,3 +113,16 @@ test('Returns sentences preprocessed with undefined language', () => {
     ['actually', 'i', 'thought'],
   ])
 })
+
+test('Returns sentences preprocessed treating spaces on border', () => {
+  const sentences = [
+    ' I really  appreciate… ',
+    ' Please   call me (back) at  ',
+    'Actually,    I thought…',
+  ]
+  expect(transform(sentences, 'en')).toEqual([
+    ['realli', 'appreci'],
+    ['pleas', 'call', 'back'],
+    ['actual', 'thought'],
+  ])
+})
