@@ -94,9 +94,22 @@ test('Returns sentences preprocessed', () => {
     'Please call me (back) at…',
     'Actually, I thought…',
   ]
-  expect(transform(sentences)).toEqual([
+  expect(transform(sentences, 'en')).toEqual([
     ['realli', 'appreci'],
     ['pleas', 'call', 'back'],
     ['actual', 'thought'],
+  ])
+})
+
+test('Returns sentences preprocessed with undefined language', () => {
+  const sentences = [
+    'I really appreciate…',
+    'Please call me (back) at…',
+    'Actually, I thought…',
+  ]
+  expect(transform(sentences)).toEqual([
+    ['i', 'really', 'appreciate'],
+    ['please', 'call', 'me', 'back', 'at'],
+    ['actually', 'i', 'thought'],
   ])
 })

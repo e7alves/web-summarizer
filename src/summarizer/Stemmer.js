@@ -1,13 +1,8 @@
 import Snowball from 'snowball'
 
-const languages = {
-  en: 'English',
-  pt: 'Portuguese',
-}
-
 export default class Stemmer {
-  constructor (lang = 'en') {
-    this._snowball = new Snowball(languages[lang] || languages.en)
+  constructor (langName) {
+    this._snowball = new Snowball(langName)
   }
 
   getCanonical (word) {

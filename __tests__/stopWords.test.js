@@ -1,14 +1,9 @@
-import stopWords from '../src/summarizer/stopWords'
+import langConfig from '../src/langConfig'
 import { sort } from '../src/summarizer/util'
 
 test('Returns ordered stoplists desc', () => {
-  const en = stopWords('en')
+  const en = langConfig.en.stopWords
   expect(en).toEqual(sort([...en]))
-  const pt = stopWords('pt')
+  const pt = langConfig.pt.stopWords
   expect(pt).toEqual(sort([...pt]))
-})
-
-test('Returns english stopwords as fallback', () => {
-  const en = stopWords('en')
-  expect(en).toEqual(stopWords('foo'))
 })

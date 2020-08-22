@@ -1,5 +1,5 @@
 import Stemmer from './Stemmer'
-import stopWords from './stopWords'
+import langConfig from '../langConfig'
 import { binarySearch } from './util'
 
 export const getSentences = (paragraphs) => {
@@ -10,16 +10,22 @@ export const getSentences = (paragraphs) => {
   return sentences
 }
 
-export const transform = (sentences) => {
-  const stopList = stopWords('en')
-  const stemmer = new Stemmer('en')
-  return sentences.map(sentence =>
-    sentence.replace(/[^a-zA-Z\s]/g, '')
-      .split(/\s+/g)
-      .map(word => word.toLowerCase())
+export const transform = (sentences, lang) => {
+  const transformedSentences = sentences.map(sentence => sentence
+    .replace(/[^a-zA-Z\s]/g, '')
+    .split(/\s+/g)
+    .map(word => word.toLowerCase())
+  )
+  const langData = langConfig[lang]
+  if (langData) {
+    const stopList = langData.stopWords
+    const stemmer = new Stemmer(langData.name)
+    return transformedSentences.map(sentence => sentence
       .filter(word => binarySearch(word, stopList) === -1)
       .map(word => stemmer.getCanonical(word))
-  )
+    )
+  }
+  return transformedSentences
 }
 
 const splitByCharacters = (strArray, characters) => {
