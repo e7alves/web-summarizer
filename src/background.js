@@ -15,3 +15,11 @@ chrome.runtime.onMessage.addListener((request) => {
     })
   }
 })
+
+chrome.runtime.onMessage.addListener((request) => {
+  if (request.eventName === 'page-not-loaded') {
+    setTimeout(
+      () => chrome.tabs.executeScript({ file: 'content.js' }), 500
+    )
+  }
+})
