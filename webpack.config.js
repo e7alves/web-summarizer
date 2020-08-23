@@ -44,6 +44,7 @@ module.exports = () => ({
         { from: './src/icon16.png', to: '' },
         { from: './src/icon48.png', to: '' },
         { from: './src/icon128.png', to: '' },
+        { from: './src/spinner.gif', to: '' },
       ],
     }),
   ],

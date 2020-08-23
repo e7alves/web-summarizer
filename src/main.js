@@ -23,7 +23,11 @@ const init = () => {
 }
 
 const initDOM = () => {
-  document.getElementById('content').innerText = 'Loading...'
+  document.getElementById('content').innerHTML = `
+    <div id="spinner">
+      <img src="spinner.gif" alt="Spinner" />
+    </div>
+  `
   chrome.storage.local.get(['summaryPercent'], result => {
     const { summaryPercent } = result
     options = {
