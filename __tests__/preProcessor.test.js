@@ -135,12 +135,12 @@ test('Returns sentences preprocessed to empty sentences', () => {
 test('Returns sentences preprocessed to accecented words', () => {
   const sentences = [
     '¿[acórdão] será às avô caça?!.',
-    '_ español tranqüilo zurückgegangen Wettbewerbsfähigkeit könnten',
+    '_ español tranqüilo zurückgegangen Wettbewerbsfähigkeit könnten Großveranstaltun',
     '¡C\'est d\'été',
   ]
   expect(transform(sentences)).toEqual([
     ['acórdão', 'será', 'às', 'avô', 'caça'],
-    ['español', 'tranqüilo', 'zurückgegangen', 'wettbewerbsfähigkeit', 'könnten'],
+    ['español', 'tranqüilo', 'zurückgegangen', 'wettbewerbsfähigkeit', 'könnten', 'großveranstaltun'],
     ['cest', 'dété'],
   ])
 })
