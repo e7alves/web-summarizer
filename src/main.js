@@ -13,8 +13,11 @@ const init = () => {
     document.getElementById('summary-percent-out').innerText = `${value}%`
     const summaryPercent = parseInt(value) / 100
     chrome.storage.local.set({ summaryPercent })
-    summarizer.setSummaryPercent(summaryPercent)
-    renderSummary()
+    options.summaryPercent = summaryPercent
+    if (summarizer) {
+      summarizer.setSummaryPercent(summaryPercent)
+      renderSummary()
+    }
   })
   chrome.runtime.sendMessage({ eventName: 'popup-opened' })
 }
