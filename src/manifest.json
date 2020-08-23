@@ -3,12 +3,8 @@
   "version": "0.0.1",
   "description": "Access summary content of Web pages.",
   "permissions": [
-    "webNavigation",
     "activeTab",
-    "tabs",
-    "storage",
-    "http://*/",
-    "https://*/"
+    "storage"
   ],
   "browser_action": {
       "default_title": "Web Summarizer",
