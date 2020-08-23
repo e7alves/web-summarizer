@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request) => {
   if (request.eventName === 'popup-opened') {
-    chrome.tabs.executeScript({ file: 'content.js' })
+    runContentScript()
   }
 })
 
@@ -18,8 +18,17 @@ chrome.runtime.onMessage.addListener((request) => {
 
 chrome.runtime.onMessage.addListener((request) => {
   if (request.eventName === 'page-not-loaded') {
-    setTimeout(
-      () => chrome.tabs.executeScript({ file: 'content.js' }), 500
-    )
+    setTimeout(runContentScript, 500)
   }
 })
+
+const runContentScript = () => {
+  chrome.tabs.executeScript(
+    { file: 'content.js' },
+    () => {
+      if (chrome.runtime.lastError) {
+        chrome.runtime.sendMessage({ eventName: 'no-content' })
+      }
+    }
+  )
+}

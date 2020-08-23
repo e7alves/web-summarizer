@@ -49,6 +49,12 @@ chrome.runtime.onMessage.addListener((request) => {
   }
 })
 
+chrome.runtime.onMessage.addListener((request) => {
+  if (request.eventName === 'no-content') {
+    document.getElementById('content').innerText = ''
+  }
+})
+
 const renderSummary = () => {
   const summary = summarizer.getSummary()
   const summarySenteceIndexes = summarizer.getSummarySenteceIndexes()
