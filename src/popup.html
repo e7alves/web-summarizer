@@ -11,10 +11,14 @@
     #summary-percent-out {
       font-weight: bold;
     }
+    #logo {
+      border-radius: 4px;
+      width: 27px;
+    }
     .flex-container {
       align-items: center;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
     }
     .highlight {
       animation-name: highlight-anim;
@@ -32,9 +36,12 @@
 </head>
 <body style="width: 600px">
   <div id="container">
-    <div class="flex-container" style="margin-right: 1rem;">
-      <output id="summary-percent-out"></output>
-      <input id="summary-percent" type="range" min="10" max="80" value="20" step="10">
+    <div class="flex-container">
+      <img id="logo" src="icon48.png" alt="web summarizer logo">
+      <div class="flex-container">
+        <output id="summary-percent-out"></output>
+        <input id="summary-percent" type="range" min="10" max="80" value="20" step="10">
+      </div>
     </div>
     <div id="content" />
   </div>
