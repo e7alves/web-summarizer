@@ -15,21 +15,14 @@ export default class Sumarizer {
   }
 
   execute () {
-    console.log(this._lang)
-    console.log(this._paragraphs)
-    console.log(this._keyWords)
     const transformedSentences = transform(this._paragraphs, this._lang)
-    console.log('tansformed sentences', transformedSentences)
     const transformedKeyWords = this._keyWords ? transform([this._keyWords], this._lang)[0] : []
-    console.log('transformed kw', transformedKeyWords)
     const wordsMapping = new WordsMapping(transformedSentences, transformedKeyWords)
     wordsMapping.execute()
     const map = wordsMapping.getMappedSentences()
-    console.log('map', map)
     const busyPath = new BushyPath(map.sentences, map.keyWords)
     busyPath.execute()
     this._rank = busyPath.getRank()
-    console.log('rank', this._rank)
     this._rank.forEach((item, idx) => {
       this._rankedSentences[idx] = this._paragraphs[item.index]
     })
@@ -43,7 +36,6 @@ export default class Sumarizer {
       .map(item => item.index)
     this._summary = this._summarySenteceIndexes
       .map(idx => this._paragraphs[idx])
-    console.log(this._summary)
   }
 
   getSummary () {
