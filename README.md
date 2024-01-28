@@ -7,7 +7,7 @@
 Web Summarizer is an extension to Google Chrome browser that provides a summary version of the content of web pages.
 
 <h3>
-  <a href="https://chrome.google.com/webstore/detail/web-summarizer/bjkoieegiicnkncndemgfnnflgdbheaj" rel="nofollow">Click here to install for free</a>
+  <a href="https://chromewebstore.google.com/detail/web-summarizer/bjkoieegiicnkncndemgfnnflgdbheaj" target="_blank" rel="nofollow">Click here to install for free</a>
 </h3>
 
 ## Technologies
